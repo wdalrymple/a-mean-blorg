@@ -1,0 +1,50 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Blog</h1>
+    <p class="lead">++ muse on things...</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-9">
+      <h1 class="page-header"><a ui-sref="viewArticle({ articleId: article._id })">{{article.title}}</a></h1>
+      <h4>{{article.author}} {{article.createdAt | date}}</h4>
+      <p></p>
+      <div class="btn-toolbar" role="toolbar">
+          <div ng-repeat='tag in article.tags' class="btn-group" role="group">
+            <a ui-sref="articleList({ year:null, month:null, tag:'{{tag}}' })"><div class="badge">{{tag}}</div></a>
+          </div>
+      </div>
+      <p></p>
+      <div btf-markdown='article.content'></div>
+      <p></p>
+      <h4>Comments:</h4>
+      <!--div class="container">
+        <div class="row" ng-repeat='comment in article.comments'>
+          <edit-comment class="col-lg-10 col-md-9" articleId="{{article._id}}" comment="comment" viewMode="{{comment.viewMode}}" editMode="{{comment.editMode}}" canEditComment="{{comment.canEditComment}}" ></edit-comment>
+        </div>
+      </div>
+      <button class="btn btn-default" ng-click="addComment()">Add Comment</button-->
+    </div>
+    <div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+      <div class="bs-sidebar hidden-print" data-offset-top="-30" bs-affix>
+        <div ng-include="'/app/blog/articleHistory/articleHistory.html'"></div>
+        <p></p>
+        <tag-cloud></tag-cloud>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <article-navigation currentdate="{{article.createdAt}}"></article-navigation>
+    </div>
+  </div>
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>

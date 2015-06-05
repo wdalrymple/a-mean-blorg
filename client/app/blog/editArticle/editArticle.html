@@ -1,0 +1,59 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Article Editor</h1>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="save(article)" novalidate>
+        <div class="form-group" ng-class="{ 'has-success': article.title.$valid && submitted,
+                                            'has-error': article.title.$invalid && submitted }">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control"  placeholder="A title for the article is required" ng-model="article.title" required/>
+          <p class="help-block" ng-show="article.title.$error.required && submitted">
+          </p>
+        </div>
+        <label>Tags</label>
+        <div class="container">
+          <div class="row">
+            <div class="btn btn-info" ng-repeat="tag in article.tags">
+              {{tag}} <div class="glyphicon glyphicon-remove" ng-click="deleteTag(tag)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="input-group">
+            <input class="form-control" type="text" name="tag" placeholder="Add a tag here." ng-model="tag">
+            <span type="button" class="input-group-btn">
+              <button type="button" class="btn btn-primary btn-sm" ng-click="addTag(tag)">Add New</button>
+            </span>
+          </p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': article.synopsis.$valid && submitted, 'has-error': article.synopsis.$invalid && submitted }">
+          <label>Synopsis</label>  <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">[Markdown]</a>
+          <textarea name="content" class="form-control" placeholder="Synopis for the article is required." rows="3" ng-model="article.synopsis" required/>
+          <p class="help-block" ng-show="article.synopsis.$error.required && submitted">
+          </p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': article.content.$valid && submitted, 'has-error': article.content.$invalid && submitted }">
+          <label>Content</label>  <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">[Markdown]</a>
+          <textarea name="content" class="form-control" rows="20" placeholder="Content for the article is required." ng-model="article.content" required/>
+          <p class="help-block" ng-show="article.content.$error.required && submitted">
+          </p>
+        </div>
+        <div>
+          <button class="btn btn-inverse btn-lg" type="submit">
+            Save
+          </button>
+          <a class="btn btn-default btn-lg" ng-click="cancel()">
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>

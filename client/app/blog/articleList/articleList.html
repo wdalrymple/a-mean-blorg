@@ -1,0 +1,39 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Blog</h1>
+    <p class="lead">++ muse on things...</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-9">
+      <div ng-repeat='article in articleList'>
+        <h3 class="page-header"><a ui-sref="viewArticle({ articleId: article._id })">{{article.title}}</a></h3>
+        <h4>{{article.createdAt | date}}</h4>
+        <p></p>
+        <div class="btn-toolbar" role="toolbar">
+          <div ng-repeat='tag in article.tags' class="btn-group" role="group">
+            <a ui-sref="articleList({ year:null, month:null, tag:'{{tag}}' })"><div class="badge">{{tag}}</div></a>
+          </div>
+        </div>
+        <p></p>
+        <p><div btf-markdown='article.synopsis'></div></p>
+        <p></p>
+        <p><a ui-sref="viewArticle({ articleId: article._id })">[ READ MORE ]</a></p>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+      <div class="bs-sidebar hidden-print" data-offset-top="-30" bs-affix>
+        <div ng-include="'/app/blog/articleHistory/articleHistory.html'"></div>
+        <p></p>
+        <!--jqcloud class="tag-cloud" words="words" width="300" height="100" shape="rectangular"  delay="10" steps="7" font-size="{from:0.09, to:0.04}"></jqcloud-->
+        <tag-cloud></tag-cloud>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>

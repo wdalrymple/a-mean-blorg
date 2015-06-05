@@ -1,0 +1,7 @@
+<div class="modal-body">
+  <p>Are you sure that you want to delete article '{{article.title}}'?</p>
+</div>
+<div class="modal-footer">
+  <div class="btn btn-default" ng-click='deleteArticle(article).$promise.then($hide())'>Confirm</div>
+  <div class="btn btn-primary" ng-click='$hide()'>Cancel</div>
+</div>

@@ -1,0 +1,9 @@
+<div ng-controller="articleHistoryCtrl">
+  <h5><a ui-sref="articleList({ year: null, month:null, tag:'' })">Previous Entries</a></h5>
+  <div ng-repeat="y in years" >
+    <span class="{{y.expanded | expandImageFilter}}" ng-click="expand(y)" aria-hidden="true"></span> <a ui-sref="articleList({ year: y.year, month:m.month, tag:'' })">{{y.year}}<div class="badge pull-right">{{y.articleCount}}</div></a>
+    <div ng-repeat="m in y.months" ng-hide="y.expanded" class="articleHistory-month">
+      <a ui-sref="articleList({ year: y.year, month:m.month, tag:'' })">{{m.month|monthFilter}} <div class="badge pull-right">{{m.articleCount}}</div></a>
+    </div>
+  </div>
+</div>

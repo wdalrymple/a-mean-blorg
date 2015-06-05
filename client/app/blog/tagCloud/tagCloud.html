@@ -1,0 +1,6 @@
+<div class="row">
+  <button type="button" ng-repeat="tag in tagList" class="tag-button btn btn-info {{ tag.weight | tagCloudFilter }}" ui-sref="articleList({ year: null, month:null, tag:tag.text })">
+    {{tag.text}}
+    <span class="badge pull-right tag-badge" aria-hidden="true">{{tag.tagCount}}</span>
+  </button>
+</div>
